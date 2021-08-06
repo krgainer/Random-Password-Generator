@@ -5,13 +5,13 @@ lower = string.ascii_lowercase
 upper = string.ascii_uppercase
 num = string.digits
 symbols = string.punctuation
-
 all = lower + upper + num + symbols
+length = int(input('\nPlease specify number of characters: ')) 
 
-length = int(input('\nPlease specify number of characters')) 
+def generate():
+	strTemp = random.sample(all,length)
+	password = ("".join(strTemp))
+	print(password)
 
-strTemp = random.sample(all,length)
+generate()
 
-password = ("".join(strTemp))
-
-print(password)
