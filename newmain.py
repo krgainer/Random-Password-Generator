@@ -30,10 +30,8 @@ generate()
 
 genButt = Button(master, text='Generate', command=generate).pack()
 
-msg = tk.Entry(text=password)
-msg.config(bg='white', fg="black", font=('times', 24,))
+msg = tk.Entry(master, text=password)
+msg.config(bg='white', fg="black", font=('times', 24))
 msg.pack()
 
 mainloop()
-
-
