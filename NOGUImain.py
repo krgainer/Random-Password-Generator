@@ -14,4 +14,3 @@ def generate():
 	print(password)
 
 generate()
-
