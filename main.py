@@ -3,7 +3,14 @@ import string
 import tkinter as tk
 from tkinter import *
 
-def generate():
+lower = string.ascii_lowercase
+upper = string.ascii_uppercase
+num = string.digits
+symbols = string.punctuation
+all = lower + upper + num + symbols
+
+
+def passGen():
 	global password, printpass
 	w1.get()
 	sliderOutput = w1.get()
@@ -13,25 +20,28 @@ def generate():
 	printpass = print(password)
 	printpass
 
-lower = string.ascii_lowercase
-upper = string.ascii_uppercase
-num = string.digits
-symbols = string.punctuation
-all = lower + upper + num + symbols
+def uiGen():
+	global master, w1
+	master = Tk()
+	master.title("Password Generator")
+	background='#515A5A'
+	w1 = Scale(master, from_=4, to=32, orient=HORIZONTAL)
+	w1.set(12)
+	w1.pack()
+	genButt = Button(master, text='Generate Password', command=passGen).pack()
 
-master = Tk()
-master.title("Password Generator")
-background='#515A5A'
-w1 = Scale(master, from_=4, to=32, orient=HORIZONTAL)
-w1.set(12)
-w1.pack()
+def mesGen():
+	msg = tk.Entry(master, text=password)
+	msg.config(bg='white', fg="black", font=('times', 24))
+	msg.pack()
 
-generate()
 
-genButt = Button(master, text='Generate', command=generate).pack()
+def main():
+	uiGen()
+	passGen()
+	mesGen()
 
-msg = tk.Entry(master, text=password)
-msg.config(bg='white', fg="black", font=('times', 24))
-msg.pack()
+if __name__ == '__main__':
+    main()
 
 mainloop()
