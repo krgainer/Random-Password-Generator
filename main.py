@@ -19,10 +19,12 @@ def passGen():
 	password = ("".join(strTemp))
 	printpass = print(password)
 	printpass
+	mesGen()
 
 def uiGen():
 	global master, w1
 	master = Tk()
+	master.geometry("800x600")
 	master.title("Password Generator")
 	background='#515A5A'
 	w1 = Scale(master, from_=4, to=32, orient=HORIZONTAL)
@@ -31,15 +33,18 @@ def uiGen():
 	genButt = Button(master, text='Generate Password', command=passGen).pack()
 
 def mesGen():
-	msg = tk.Entry(master, text=password)
+	global msg, msgText
+	msgText = tk.StringVar()
+	msg = tk.Entry(master, textvariable=msgText)
 	msg.config(bg='white', fg="black", font=('times', 24))
+	msg.place(width=600,height=50)
 	msg.pack()
+	msgText.set(password)
 
 
 def main():
 	uiGen()
 	passGen()
-	mesGen()
 
 if __name__ == '__main__':
     main()
