@@ -52,7 +52,7 @@ if __name__ == '__main__':
 mainloop()
 
 
-
+	
 ## Upgrade plan: 
 ##	add ability to check in or out special characters, numbers, etc via checkboxes
 ##	create a log, that was generated passwords can be kept incase they're lost, include time and date in file
