@@ -23,11 +23,11 @@ def passGen():
 	mesGen()
 
 def genTemp():
-	if (numberCheck.get() == 1) & (symbolCheck.get() == 0):
+	if (numCheckVar.get() == 1) & (symCheckVar.get() == 0):
 		return random.sample(noSym,length)
-	elif (numberCheck.get() == 0) & (symbolCheck.get() == 1):
+	elif (numCheckVar.get() == 0) & (symCheckVar.get() == 1):
 		return random.sample(noNum,length)
-	elif (numberCheck.get() == 0) & (symbolCheck.get() == 0):
+	elif (numCheckVar.get() == 0) & (symCheckVar.get() == 0):
 		return random.sample(justLetters,length)
 	else:
 		return random.sample(all,length)
@@ -37,7 +37,6 @@ def uiGen():
 	master = Tk()
 	master.geometry("800x600")
 	master.title("Password Generator")
-	background='#515A5A'
 	w1 = Scale(master, from_=4, to=48, orient=HORIZONTAL)
 	w1.set(12)
 	w1.pack()
@@ -53,15 +52,15 @@ def mesGen():
 	msgText.set(password)
 
 def chechBoxes():
-	global numberCheck, symbolCheck
-	numberCheck = tk.IntVar()
-	symbolCheck = tk.IntVar()
-	c1 = tk.Checkbutton(master, text='Numbers',variable=numberCheck)
-	c1.select()
-	c1.pack()
-	c2 = tk.Checkbutton(master, text='Symbols',variable=symbolCheck)
-	c2.select()
-	c2.pack()
+	global numCheckVar, symCheckVar
+	numCheckVar = tk.IntVar()
+	symCheckVar = tk.IntVar()
+	numCheckbox = tk.Checkbutton(master, text='Numbers',variable=numCheckVar)
+	numCheckbox.select()
+	numCheckbox.pack()
+	symCheckbox = tk.Checkbutton(master, text='Symbols',variable=symCheckVar)
+	symCheckbox.select()
+	symCheckbox.pack()
 
 def main():
 	uiGen()
