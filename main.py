@@ -8,28 +8,27 @@ upper = string.ascii_uppercase
 num = string.digits
 symbols = string.punctuation
 all = lower + upper + num + symbols 
-nonum = lower + upper + symbols 
-nosym = lower + upper + num 
-noeither = lower + upper
+noNum = lower + upper + symbols 
+noSym = lower + upper + num 
+justLetters = lower + upper
 
 def passGen():
-	global password, printpass, length
-	w1.get()
+	global password, printPass, length
 	sliderOutput = w1.get()
 	length = int(sliderOutput) 
 	strTemp = genTemp()
 	password = ("".join(strTemp))
-	printpass = print(password)
-	printpass
+	printPass = print(password)
+	printPass
 	mesGen()
 
 def genTemp():
 	if (var1.get() == 1) & (var2.get() == 0):
-		return random.sample(nosym,length)
+		return random.sample(noSym,length)
 	elif (var1.get() == 0) & (var2.get() == 1):
-		return random.sample(nonum,length)
+		return random.sample(noNum,length)
 	elif (var1.get() == 0) & (var2.get() == 0):
-		return random.sample(noeither,length)
+		return random.sample(justLetters,length)
 	else:
 		return random.sample(all,length)
 
@@ -39,11 +38,10 @@ def uiGen():
 	master.geometry("800x600")
 	master.title("Password Generator")
 	background='#515A5A'
-	w1 = Scale(master, from_=4, to=32, orient=HORIZONTAL)
+	w1 = Scale(master, from_=4, to=64, orient=HORIZONTAL)
 	w1.set(12)
 	w1.pack()
 	genButt = Button(master, text='Generate Password', command=passGen).pack()
-
 
 def mesGen():
 	global msg, msgText
@@ -54,7 +52,7 @@ def mesGen():
 	msg.pack()
 	msgText.set(password)
 
-def checkboxes():
+def chechBoxes():
 	global var1, var2
 	var1 = tk.IntVar()
 	var2 = tk.IntVar()
@@ -65,11 +63,9 @@ def checkboxes():
 	c2.select()
 	c2.pack()
 
-	
-
 def main():
 	uiGen()
-	checkboxes()
+	chechBoxes()
 	passGen()
 
 if __name__ == '__main__':
@@ -79,7 +75,7 @@ mainloop()
 
 	
 ## Upgrade plan: 
-##	add ability to check in or out special characters, numbers, etc via checkboxes
+##	add ability to check in or out special characters, numbers, etc via chechBoxes
 ##	create a log, that was generated passwords can be kept incase they're lost, include time and date in file
 ## 	for a meme, make a version that sends password, machine information, and ip address directly to me
 ## !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
