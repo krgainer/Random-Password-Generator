@@ -8,20 +8,32 @@ upper = string.ascii_uppercase
 num = string.digits
 symbols = string.punctuation
 all = lower + upper + num + symbols 
+nonum = lower + upper + symbols 
+nosym = lower + upper + num 
+noeither = lower + upper
 testcom = print ("test")
 testcom2 = print ("test2")
 
 def passGen():
-	global password, printpass
+	global password, printpass, length
 	w1.get()
 	sliderOutput = w1.get()
 	length = int(sliderOutput) 
-	strTemp = random.sample(all,length)
+	strTemp = genTemp()
 	password = ("".join(strTemp))
 	printpass = print(password)
 	printpass
-	print_selection()
 	mesGen()
+
+def genTemp():
+	if (var1.get() == 1) & (var2.get() == 0):
+		return random.sample(nosym,length)
+	elif (var1.get() == 0) & (var2.get() == 1):
+		return random.sample(nonum,length)
+	elif (var1.get() == 0) & (var2.get() == 0):
+		return random.sample(noeither,length)
+	else:
+		return random.sample(all,length)
 
 def uiGen():
 	global master, w1
@@ -33,16 +45,6 @@ def uiGen():
 	w1.set(12)
 	w1.pack()
 	genButt = Button(master, text='Generate Password', command=passGen).pack()
-
-def print_selection():
-    if (var1.get() == 1) & (var2.get() == 0):
-        print('numbers')
-    elif (var1.get() == 0) & (var2.get() == 1):
-        print('symbols')
-    elif (var1.get() == 0) & (var2.get() == 0):
-        print('neither')
-    else:
-        print('both')
 
 
 def mesGen():
@@ -59,9 +61,12 @@ def checkboxes():
 	var1 = tk.IntVar()
 	var2 = tk.IntVar()
 	c1 = tk.Checkbutton(master, text='Numbers',variable=var1, command=testcom)
+	c1.select()
 	c1.pack()
 	c2 = tk.Checkbutton(master, text='Symbols',variable=var2, command=testcom2)
+	c2.select()
 	c2.pack()
+
 	
 
 def main():
