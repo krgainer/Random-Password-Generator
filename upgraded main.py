@@ -20,7 +20,7 @@ def passGen():
 	password = ("".join(strTemp))
 	printpass = print(password)
 	printpass
-	print(var1, var2)
+	print_selection()
 	mesGen()
 
 def uiGen():
@@ -33,6 +33,17 @@ def uiGen():
 	w1.set(12)
 	w1.pack()
 	genButt = Button(master, text='Generate Password', command=passGen).pack()
+
+def print_selection():
+    if (var1.get() == 1) & (var2.get() == 0):
+        print('numbers')
+    elif (var1.get() == 0) & (var2.get() == 1):
+        print('symbols')
+    elif (var1.get() == 0) & (var2.get() == 0):
+        print('neither')
+    else:
+        print('both')
+
 
 def mesGen():
 	global msg, msgText
@@ -47,9 +58,9 @@ def checkboxes():
 	global var1, var2
 	var1 = tk.IntVar()
 	var2 = tk.IntVar()
-	c1 = tk.Checkbutton(master, text='Numbers',variable=var1, onvalue=1, offvalue=0, command=testcom)
+	c1 = tk.Checkbutton(master, text='Numbers',variable=var1, command=testcom)
 	c1.pack()
-	c2 = tk.Checkbutton(master, text='Symbols',variable=var2, onvalue=1, offvalue=0, command=testcom2)
+	c2 = tk.Checkbutton(master, text='Symbols',variable=var2, command=testcom2)
 	c2.pack()
 	
 
