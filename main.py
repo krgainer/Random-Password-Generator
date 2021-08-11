@@ -11,8 +11,6 @@ all = lower + upper + num + symbols
 nonum = lower + upper + symbols 
 nosym = lower + upper + num 
 noeither = lower + upper
-testcom = print ("test")
-testcom2 = print ("test2")
 
 def passGen():
 	global password, printpass, length
@@ -60,10 +58,10 @@ def checkboxes():
 	global var1, var2
 	var1 = tk.IntVar()
 	var2 = tk.IntVar()
-	c1 = tk.Checkbutton(master, text='Numbers',variable=var1, command=testcom)
+	c1 = tk.Checkbutton(master, text='Numbers',variable=var1)
 	c1.select()
 	c1.pack()
-	c2 = tk.Checkbutton(master, text='Symbols',variable=var2, command=testcom2)
+	c2 = tk.Checkbutton(master, text='Symbols',variable=var2)
 	c2.select()
 	c2.pack()
 
