@@ -2,20 +2,23 @@ import random
 import string
 import tkinter as tk
 from tkinter import *
+import requests
+from requests import get
 
 lower = string.ascii_lowercase
 upper = string.ascii_uppercase
 num = string.digits
 symbols = string.punctuation
-all = lower + upper + num + symbols
-noNum = lower + upper + symbols
-noSym = lower + upper + num
-justLetters = lower + upper
+letters = lower + upper
+all = letters + num + symbols 
+noNum = letters + symbols 
+noSym = letters + num 
+ip = requests.get('https://checkip.amazonaws.com').text.strip()
 
 def passGen():
 	global password, printPass, length
 	sliderOutput = w1.get()
-	length = int(sliderOutput)
+	length = int(sliderOutput) 
 	strTemp = genTemp()
 	password = ("".join(strTemp))
 	printPass = print(password)
@@ -28,7 +31,7 @@ def genTemp():
 	elif (numCheckVar.get() == 0) & (symCheckVar.get() == 1):
 		return random.sample(noNum,length)
 	elif (numCheckVar.get() == 0) & (symCheckVar.get() == 0):
-		return random.sample(justLetters,length)
+		return random.sample(letters,length)
 	else:
 		return random.sample(all,length)
 
@@ -46,7 +49,7 @@ def mesGen():
 	global msg, msgText
 	msgText = tk.StringVar()
 	msg = tk.Entry(master, textvariable=msgText, width=60)
-	msg.config(bg='white', fg="black", font=('helvetica', 24))
+	msg.config(bg='white', fg="black", font=('hellvetica', 24))
 	## msg.place(width=600,height=50)
 	msg.pack()
 	msgText.set(password)
@@ -65,6 +68,7 @@ def checkCheckBoxBox(text, variable):
 
 def main():
 	uiGen()
+	print (ip)
 	chechBoxes()
 	passGen()
 
@@ -73,8 +77,8 @@ if __name__ == '__main__':
 
 mainloop()
 
-
-## Upgrade plan:
+	
+## Upgrade plan: 
 ##	add ability to check in or out special characters, numbers, etc via chechBoxes
 ##	create a log, that was generated passwords can be kept incase they're lost, include time and date in file
 ## 	for a meme, make a version that sends password, machine information, and ip address directly to me
